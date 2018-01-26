@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const app = require('../app');
+
+const logger = app.get('logger');
+const port = app.get('port');
+const server = app.listen(port);
+
+server.on('listening', () => {
+  logger.info(`Listening on port ${port}`);
+  logger.debug({env: app.get('env'), config: app.get('config')});
+});
